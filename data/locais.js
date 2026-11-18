@@ -14,6 +14,8 @@
  *   contorno: polígono da estrutura (OpenStreetMap) destacado em 3D; altura em metros (estimada)
  *   descricao, historia, endereco, telefone, site, instagram, horario
  *   tags: lista curta exibida como etiquetas
+ *   fotos: fotos livres do Wikimedia Commons ({legenda, pequena, grande, autor, licenca, pagina});
+ *     só são baixadas quando o lugar é aberto, e o crédito ao autor é obrigatório pela licença
  *   fontes: de onde vieram as informações
  *   trilha (só para categoria "trilha"): { percurso: [[lng,lat],...], tempoMedio, pontos (atrativos no caminho) }
  *   municipio, distanciaPassos: para lugares fora da cidade
@@ -44,6 +46,10 @@ window.LOCAIS = [
     endereco: "Centro",
     horario: "Aberta 24 horas",
     tags: ["Praça", "Centro"],
+    fotos: [
+      {"legenda": "O centro de Passos visto do alto, com a Praça da Matriz ao meio", "pequena": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Passos_-_Regi%C3%A3o_central_de_Passos%2C_com_Pra%C3%A7a_da_Matriz_%28no_centro%29.jpg/500px-Passos_-_Regi%C3%A3o_central_de_Passos%2C_com_Pra%C3%A7a_da_Matriz_%28no_centro%29.jpg", "grande": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Passos_-_Regi%C3%A3o_central_de_Passos%2C_com_Pra%C3%A7a_da_Matriz_%28no_centro%29.jpg/960px-Passos_-_Regi%C3%A3o_central_de_Passos%2C_com_Pra%C3%A7a_da_Matriz_%28no_centro%29.jpg", "autor": "Enio1966", "licenca": "CC BY-SA 4.0", "pagina": "https://commons.wikimedia.org/wiki/File:Passos_-_Regi%C3%A3o_central_de_Passos,_com_Pra%C3%A7a_da_Matriz_(no_centro).jpg"},
+      {"legenda": "Fonte luminosa da praça, à noite", "pequena": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Fonte_luminosa_na_Pra%C3%A7a_da_Matriz%2C_Passos_-_MG%2C_Brasil_%28noturna%29.jpg/500px-Fonte_luminosa_na_Pra%C3%A7a_da_Matriz%2C_Passos_-_MG%2C_Brasil_%28noturna%29.jpg", "grande": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Fonte_luminosa_na_Pra%C3%A7a_da_Matriz%2C_Passos_-_MG%2C_Brasil_%28noturna%29.jpg/960px-Fonte_luminosa_na_Pra%C3%A7a_da_Matriz%2C_Passos_-_MG%2C_Brasil_%28noturna%29.jpg", "autor": "Bdrfo", "licenca": "CC BY 4.0", "pagina": "https://commons.wikimedia.org/wiki/File:Fonte_luminosa_na_Pra%C3%A7a_da_Matriz,_Passos_-_MG,_Brasil_(noturna).jpg"}
+    ],
     fontes: ["OpenStreetMap"]
   },
   {
@@ -56,6 +62,9 @@ window.LOCAIS = [
     descricao: "Igreja matriz católica dedicada a Nossa Senhora Aparecida.",
     endereco: "Praça Nossa Senhora Aparecida",
     tags: ["Patrimônio religioso"],
+    fotos: [
+      {"legenda": "Igreja Matriz de Nossa Senhora Aparecida", "pequena": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c9/Igreja_N.S.Aparecida_-_panoramio.jpg/500px-Igreja_N.S.Aparecida_-_panoramio.jpg", "grande": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c9/Igreja_N.S.Aparecida_-_panoramio.jpg/960px-Igreja_N.S.Aparecida_-_panoramio.jpg", "autor": "Mateus Tomé", "licenca": "CC BY-SA 3.0", "pagina": "https://commons.wikimedia.org/wiki/File:Igreja_N.S.Aparecida_-_panoramio.jpg"}
+    ],
     fontes: ["OpenStreetMap"]
   },
   {
@@ -69,6 +78,12 @@ window.LOCAIS = [
     historia: "Idealizado pelo Monsenhor Matias para ampliar a antiga Capelinha da Penha, que, segundo as fontes, tem mais de 200 anos. As datas da obra divergem: uma fonte fala em construção em 1947, outra em obra iniciada em 1964 e concluída cerca de 20 anos depois, e outra situa a capela original no século XIX. Confirme com a paróquia.",
     endereco: "Praça da Capela",
     tags: ["Patrimônio religioso", "Art déco"],
+    fotos: [
+      {"legenda": "Capela Centenária Nossa Senhora da Penha", "pequena": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/68/Capela_Centen%C3%A1ria_Nossa_Senhora_da_Penha_%28Passos%29_-_Passos_-_20260919142747.JPG/500px-Capela_Centen%C3%A1ria_Nossa_Senhora_da_Penha_%28Passos%29_-_Passos_-_20260919142747.JPG", "grande": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/68/Capela_Centen%C3%A1ria_Nossa_Senhora_da_Penha_%28Passos%29_-_Passos_-_20260919142747.JPG/960px-Capela_Centen%C3%A1ria_Nossa_Senhora_da_Penha_%28Passos%29_-_Passos_-_20260919142747.JPG", "autor": "Túllio F", "licenca": "CC BY-SA 4.0", "pagina": "https://commons.wikimedia.org/wiki/File:Capela_Centen%C3%A1ria_Nossa_Senhora_da_Penha_(Passos)_-_Passos_-_20260919142747.JPG"},
+      {"legenda": "A capela e a torre do sino", "pequena": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Capela_Centen%C3%A1ria_Nossa_Senhora_da_Penha_%28Passos%29_-_Passos_-_20260919142803.JPG/500px-Capela_Centen%C3%A1ria_Nossa_Senhora_da_Penha_%28Passos%29_-_Passos_-_20260919142803.JPG", "grande": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Capela_Centen%C3%A1ria_Nossa_Senhora_da_Penha_%28Passos%29_-_Passos_-_20260919142803.JPG/960px-Capela_Centen%C3%A1ria_Nossa_Senhora_da_Penha_%28Passos%29_-_Passos_-_20260919142803.JPG", "autor": "Túllio F", "licenca": "CC BY-SA 4.0", "pagina": "https://commons.wikimedia.org/wiki/File:Capela_Centen%C3%A1ria_Nossa_Senhora_da_Penha_(Passos)_-_Passos_-_20260919142803.JPG"},
+      {"legenda": "A torre do sino e a capela", "pequena": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/Capela_Centen%C3%A1ria_Nossa_Senhora_da_Penha_%28Passos%29_-_Passos_-_20260919142820.JPG/500px-Capela_Centen%C3%A1ria_Nossa_Senhora_da_Penha_%28Passos%29_-_Passos_-_20260919142820.JPG", "grande": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/Capela_Centen%C3%A1ria_Nossa_Senhora_da_Penha_%28Passos%29_-_Passos_-_20260919142820.JPG/960px-Capela_Centen%C3%A1ria_Nossa_Senhora_da_Penha_%28Passos%29_-_Passos_-_20260919142820.JPG", "autor": "Túllio F", "licenca": "CC BY-SA 4.0", "pagina": "https://commons.wikimedia.org/wiki/File:Capela_Centen%C3%A1ria_Nossa_Senhora_da_Penha_(Passos)_-_Passos_-_20260919142820.JPG"},
+      {"legenda": "Santuário da Penha", "pequena": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Santu%C3%A1rio_da_Penha%2C_Passos_-_MG.jpg", "grande": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Santu%C3%A1rio_da_Penha%2C_Passos_-_MG.jpg", "autor": "MMárcio", "licenca": "CC BY 3.0", "pagina": "https://commons.wikimedia.org/wiki/File:Santu%C3%A1rio_da_Penha,_Passos_-_MG.jpg"}
+    ],
     fontes: ["Jorge Paiva Imóveis (2021)", "OpenStreetMap", "Temporada Livre (2024)", "Transportal (2022)", "Vai de Promo (2023)"]
   },
   {
@@ -79,6 +94,9 @@ window.LOCAIS = [
     descricao: "Igreja católica junto à Praça São Francisco.",
     endereco: "Rua Santa Luzia",
     tags: ["Patrimônio religioso"],
+    fotos: [
+      {"legenda": "Fachada da Igreja São Francisco", "pequena": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/12/Igreja_S%C3%A3o_Francisco_Passos.JPG/500px-Igreja_S%C3%A3o_Francisco_Passos.JPG", "grande": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/12/Igreja_S%C3%A3o_Francisco_Passos.JPG/960px-Igreja_S%C3%A3o_Francisco_Passos.JPG", "autor": "Ed.view.45", "licenca": "CC BY-SA 3.0", "pagina": "https://commons.wikimedia.org/wiki/File:Igreja_S%C3%A3o_Francisco_Passos.JPG"}
+    ],
     fontes: ["OpenStreetMap"]
   },
   {
@@ -90,6 +108,11 @@ window.LOCAIS = [
     endereco: "Centro",
     horario: "Aberta 24 horas",
     tags: ["Praça", "Centro"],
+    fotos: [
+      {"legenda": "Fonte luminosa da praça", "pequena": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/Fonte_Luminosa_da_Pra%C3%A7a_Geraldo_Silva_Maia_%28Passos%29_01.jpg/500px-Fonte_Luminosa_da_Pra%C3%A7a_Geraldo_Silva_Maia_%28Passos%29_01.jpg", "grande": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/Fonte_Luminosa_da_Pra%C3%A7a_Geraldo_Silva_Maia_%28Passos%29_01.jpg/960px-Fonte_Luminosa_da_Pra%C3%A7a_Geraldo_Silva_Maia_%28Passos%29_01.jpg", "autor": "Túllio F", "licenca": "CC BY-SA 4.0", "pagina": "https://commons.wikimedia.org/wiki/File:Fonte_Luminosa_da_Pra%C3%A7a_Geraldo_Silva_Maia_(Passos)_01.jpg"},
+      {"legenda": "A fonte e o entorno", "pequena": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/Fonte_Luminosa_da_Pra%C3%A7a_Geraldo_Silva_Maia_%28Passos%29_04.jpg/500px-Fonte_Luminosa_da_Pra%C3%A7a_Geraldo_Silva_Maia_%28Passos%29_04.jpg", "grande": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/Fonte_Luminosa_da_Pra%C3%A7a_Geraldo_Silva_Maia_%28Passos%29_04.jpg/960px-Fonte_Luminosa_da_Pra%C3%A7a_Geraldo_Silva_Maia_%28Passos%29_04.jpg", "autor": "Túllio F", "licenca": "CC BY-SA 4.0", "pagina": "https://commons.wikimedia.org/wiki/File:Fonte_Luminosa_da_Pra%C3%A7a_Geraldo_Silva_Maia_(Passos)_04.jpg"},
+      {"legenda": "Alameda arborizada da praça", "pequena": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/66/Fonte_Luminosa_da_Pra%C3%A7a_Geraldo_Silva_Maia_%28Passos%29_06.jpg/500px-Fonte_Luminosa_da_Pra%C3%A7a_Geraldo_Silva_Maia_%28Passos%29_06.jpg", "grande": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/66/Fonte_Luminosa_da_Pra%C3%A7a_Geraldo_Silva_Maia_%28Passos%29_06.jpg/960px-Fonte_Luminosa_da_Pra%C3%A7a_Geraldo_Silva_Maia_%28Passos%29_06.jpg", "autor": "Túllio F", "licenca": "CC BY-SA 4.0", "pagina": "https://commons.wikimedia.org/wiki/File:Fonte_Luminosa_da_Pra%C3%A7a_Geraldo_Silva_Maia_(Passos)_06.jpg"}
+    ],
     fontes: ["OpenStreetMap"]
   },
   {
@@ -151,6 +174,9 @@ window.LOCAIS = [
     localizacao: "aproximada",
     descricao: "Área às margens do Lago de Furnas, o \"mar de Minas\", a cerca de 9 km do centro. Lugar para ver o pôr do sol e praticar esportes náuticos.",
     tags: ["Lago de Furnas", "Pôr do sol", "Esportes náuticos"],
+    fotos: [
+      {"legenda": "Ponte entre Passos e Glória sobre o Lago de Furnas", "pequena": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/POnte_Passos_x_Gl%C3%B3ria_-_panoramio.jpg/500px-POnte_Passos_x_Gl%C3%B3ria_-_panoramio.jpg", "grande": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/POnte_Passos_x_Gl%C3%B3ria_-_panoramio.jpg/960px-POnte_Passos_x_Gl%C3%B3ria_-_panoramio.jpg", "autor": "Mateus Tomé", "licenca": "CC BY-SA 3.0", "pagina": "https://commons.wikimedia.org/wiki/File:POnte_Passos_x_Gl%C3%B3ria_-_panoramio.jpg"}
+    ],
     fontes: ["Jorge Paiva Imóveis (2021)", "Vai de Promo (2023)", "OpenStreetMap"]
   },
   {
@@ -199,6 +225,10 @@ window.LOCAIS = [
     descricao: "Complexo de cachoeiras com pousada e camping, na região de Glória.",
     endereco: "Zona rural de São João Batista do Glória",
     tags: ["Cachoeira", "Camping"],
+    fotos: [
+      {"legenda": "Entrada da pousada Pé da Serra", "pequena": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3f/Entrada_da_pousada_P%C3%A9_Da_Serra_-_2015-02-08_-_Isack_-_panoramio.jpg/500px-Entrada_da_pousada_P%C3%A9_Da_Serra_-_2015-02-08_-_Isack_-_panoramio.jpg", "grande": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3f/Entrada_da_pousada_P%C3%A9_Da_Serra_-_2015-02-08_-_Isack_-_panoramio.jpg/960px-Entrada_da_pousada_P%C3%A9_Da_Serra_-_2015-02-08_-_Isack_-_panoramio.jpg", "autor": "Isack Ryuji Minowa", "licenca": "CC BY-SA 3.0", "pagina": "https://commons.wikimedia.org/wiki/File:Entrada_da_pousada_P%C3%A9_Da_Serra_-_2015-02-08_-_Isack_-_panoramio.jpg"},
+      {"legenda": "Paredão da Serra da Canastra visto do Pé da Serra", "pequena": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/eb/Pared%C3%A3o_da_Serra_da_Canastra_2015-02-08_-_Isack_-_panoramio.jpg/500px-Pared%C3%A3o_da_Serra_da_Canastra_2015-02-08_-_Isack_-_panoramio.jpg", "grande": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/eb/Pared%C3%A3o_da_Serra_da_Canastra_2015-02-08_-_Isack_-_panoramio.jpg/960px-Pared%C3%A3o_da_Serra_da_Canastra_2015-02-08_-_Isack_-_panoramio.jpg", "autor": "Isack Ryuji Minowa", "licenca": "CC BY-SA 3.0", "pagina": "https://commons.wikimedia.org/wiki/File:Pared%C3%A3o_da_Serra_da_Canastra_2015-02-08_-_Isack_-_panoramio.jpg"}
+    ],
     fontes: ["OpenStreetMap"]
   },
   {
@@ -314,6 +344,11 @@ window.LOCAIS = [
     telefone: "(35) 99811-4272",
     site: "https://www.wikiloc.com/offroading-trails/cachoeira-maria-augusta-com-partida-em-passos-172438756",
     tags: ["Cachoeira", "Camping próximo"],
+    fotos: [
+      {"legenda": "Cachoeira Maria Augusta", "pequena": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Cachoeira_maria_augusta.jpg", "grande": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Cachoeira_maria_augusta.jpg", "autor": "AkyrA artx", "licenca": "CC BY-SA 3.0", "pagina": "https://commons.wikimedia.org/wiki/File:Cachoeira_maria_augusta.jpg"},
+      {"legenda": "Vista panorâmica da cachoeira", "pequena": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Cachoeira_maria_augusta_panorama.jpg/500px-Cachoeira_maria_augusta_panorama.jpg", "grande": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Cachoeira_maria_augusta_panorama.jpg/960px-Cachoeira_maria_augusta_panorama.jpg", "autor": "AkyrA artx", "licenca": "CC BY-SA 3.0", "pagina": "https://commons.wikimedia.org/wiki/File:Cachoeira_maria_augusta_panorama.jpg"},
+      {"legenda": "A queda e a praia de areia", "pequena": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Maria_augusta_serra_da_canastra_2015.jpg", "grande": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Maria_augusta_serra_da_canastra_2015.jpg", "autor": "AkyrA artx", "licenca": "CC BY-SA 3.0", "pagina": "https://commons.wikimedia.org/wiki/File:Maria_augusta_serra_da_canastra_2015.jpg"}
+    ],
     fontes: ["Buser", "OpenStreetMap", "Travel.com.br"],
     trilha: {
       tempoMedio: "15 min (ida e volta)",
@@ -355,6 +390,9 @@ window.LOCAIS = [
     descricao: "Trilha até a Cachoeira do Quilombo, em Delfinópolis, no limite da Serra da Canastra.",
     endereco: "Zona rural de Delfinópolis (a ~30 km de Passos em linha reta)",
     tags: ["Cachoeira"],
+    fotos: [
+      {"legenda": "Rio e serra a cerca de 100 m do início da trilha", "pequena": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/Parque_Nacional_Serra_da_Canastra_Brian_F_Ribeiro_%2806%29.jpg/500px-Parque_Nacional_Serra_da_Canastra_Brian_F_Ribeiro_%2806%29.jpg", "grande": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/Parque_Nacional_Serra_da_Canastra_Brian_F_Ribeiro_%2806%29.jpg/960px-Parque_Nacional_Serra_da_Canastra_Brian_F_Ribeiro_%2806%29.jpg", "autor": "Brian F. Ribeiro", "licenca": "CC BY-SA 4.0", "pagina": "https://commons.wikimedia.org/wiki/File:Parque_Nacional_Serra_da_Canastra_Brian_F_Ribeiro_(06).jpg"}
+    ],
     fontes: ["OpenStreetMap", "Travel.com.br"],
     trilha: {
       tempoMedio: "30 min (ida e volta)",
@@ -375,6 +413,9 @@ window.LOCAIS = [
     descricao: "Trilha até a Cachoeira Paraíso Perdido, citada entre os pontos mais visitados de São João Batista do Glória. Traçado montado sobre os caminhos mapeados no OpenStreetMap.",
     endereco: "Zona rural de São João Batista do Glória",
     tags: ["Cachoeira"],
+    fotos: [
+      {"legenda": "Cachoeira Paraíso Perdido", "pequena": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/CACHOEIRA_PARA%C3%8DSO_PERDIDO-_S.JO%C3%83O_BATISTA_DO_GL%C3%93RIA_-_MG.jpg/500px-CACHOEIRA_PARA%C3%8DSO_PERDIDO-_S.JO%C3%83O_BATISTA_DO_GL%C3%93RIA_-_MG.jpg", "grande": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/CACHOEIRA_PARA%C3%8DSO_PERDIDO-_S.JO%C3%83O_BATISTA_DO_GL%C3%93RIA_-_MG.jpg/960px-CACHOEIRA_PARA%C3%8DSO_PERDIDO-_S.JO%C3%83O_BATISTA_DO_GL%C3%93RIA_-_MG.jpg", "autor": "Marcopilas", "licenca": "CC BY-SA 4.0", "pagina": "https://commons.wikimedia.org/wiki/File:CACHOEIRA_PARA%C3%8DSO_PERDIDO-_S.JO%C3%83O_BATISTA_DO_GL%C3%93RIA_-_MG.jpg"}
+    ],
     fontes: ["OpenStreetMap", "Travel.com.br"],
     trilha: {
       tempoMedio: "1 h (ida e volta)",

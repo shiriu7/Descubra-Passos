@@ -89,6 +89,16 @@ A base tem 85 lugares (17 passeios, 7 trilhas, 18 hospedagens e 43 lugares para 
 
 Os lugares que só tinham endereço foram posicionados pela numeração da rua e marcados com `localizacao: "aproximada"`. O site avisa no painel e, nesses casos, o botão "Como chegar" busca pelo endereço escrito. Nos testes, o erro dessa estimativa ficou entre 26 e 142 m.
 
+### Fotos
+
+19 fotos de 10 lugares vêm do [Wikimedia Commons](https://commons.wikimedia.org), o acervo de imagens livres da Wikipédia. Foram escolhidas uma a uma, conferindo se mostram o lugar de fato (pela localização e pelo conteúdo da foto). Elas não ficam no projeto: o navegador baixa a versão pequena (500 px) só quando o lugar é aberto, e a grande (960 px) só ao tocar na foto.
+
+As licenças (CC BY e CC BY-SA) permitem o uso gratuito, mas exigem o crédito ao autor. O site mostra nome do autor, licença e link para a página original embaixo de cada foto: não remova esse crédito.
+
+Para adicionar uma foto: encontre a imagem no Commons, abra a página dela e copie o endereço da miniatura de 500 px e o de 960 px (botão "Usar este arquivo" ou o link de outra resolução). Depois inclua no campo `fotos` do lugar em `data/locais.js`, seguindo o formato dos que já existem. Fotos próprias também servem: coloque o arquivo numa pasta `fotos/` do projeto e use o caminho relativo (`fotos/nome.jpg`) nos dois campos.
+
+Os lugares sem foto livre (a maioria dos restaurantes e hotéis) têm o botão "Ver fotos no Google Maps", que abre a busca do lugar no Google Maps. É só um link, sem chave nem custo.
+
 ### Pendências de conteúdo
 
 - Telefones e horários vêm de diretórios que podem estar desatualizados: confirme antes de divulgar.

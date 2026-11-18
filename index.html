@@ -80,6 +80,21 @@
     </section>
   </main>
 
+  <!-- Fora do <main>: ele é position: fixed e prenderia o visor abaixo da coluna lateral -->
+  <div id="visor" class="visor" role="dialog" aria-modal="true" aria-label="Foto ampliada" hidden>
+    <button class="visor-fechar" aria-label="Fechar foto">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <button class="visor-anterior" aria-label="Foto anterior">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <img alt="">
+    <button class="visor-proxima" aria-label="Próxima foto">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+    <p class="visor-legenda"></p>
+  </div>
+
   <script src="vendor/maplibre-gl/maplibre-gl.js"></script>
   <script src="js/config.js"></script>
   <script src="data/locais.js"></script>

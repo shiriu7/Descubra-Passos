@@ -171,7 +171,13 @@
     // Link direto para um lugar: espera o relevo da vista inicial. Voando antes disso,
     // o terreno chega no meio do voo e o MapLibre ergue a câmera, cortando zoom e inclinação.
     const inicial = decodeURIComponent(location.hash.slice(1));
-    if (inicial && locais.some((l) => l.id === inicial)) mapa.once("idle", () => selecionar(inicial));
+    if (inicial && locais.some((l) => l.id === inicial)) {
+      // Em conexão lenta o mapa demora a ficar parado: abre o lugar em no máximo 4 s
+      let aberto = false;
+      const abrir = () => { if (!aberto) { aberto = true; selecionar(inicial); } };
+      mapa.once("idle", abrir);
+      setTimeout(abrir, 4000);
+    }
 
     // Sombreamento do relevo: só enfeite, entra depois que o primeiro quadro estiver pronto
     mapa.once("idle", () => {
@@ -719,6 +725,16 @@
       html += '<div class="tags">' + local.tags.map((t) => '<span class="tag">' + esc(t) + "</span>").join("") + "</div>";
     html += "</header>";
 
+    // Fotos: entram no HTML só quando o lugar é aberto; a versão grande só ao tocar na foto
+    if (local.fotos && local.fotos.length) {
+      html += '<section class="galeria-sec"><div class="galeria' + (local.fotos.length > 1 ? " varias" : "") + '">' +
+        local.fotos.map((f, i) =>
+          '<figure><button class="foto" data-i="' + i + '" aria-label="Ampliar foto: ' + esc(f.legenda) + '">' +
+          '<img src="' + esc(f.pequena) + '" alt="' + esc(f.legenda) + '" loading="' + (i ? "lazy" : "eager") + '" decoding="async">' +
+          "</button><figcaption>" + esc(f.legenda) + "<small>" + creditoFoto(f) + "</small></figcaption></figure>"
+        ).join("") + "</div></section>";
+    }
+
     if (local.trilha) {
       const km = distanciasAcumuladas(local.trilha.percurso).pop() / 1000;
       html += '<section><dl class="ficha">' +
@@ -757,8 +773,13 @@
         : "") +
       "</section>";
 
+    // Fotos enviadas por visitantes no Google Maps: só um link, sem chave nem custo
+    const buscaFotos = "https://www.google.com/maps/search/?api=1&query=" +
+      encodeURIComponent(local.nome + ", " + (local.municipio || "Passos") + ", MG");
     html += '<section><div class="acoes">' +
       '<a class="btn" href="' + rota + '" target="_blank" rel="noopener">Como chegar</a>' +
+      '<a class="btn secundario" href="' + buscaFotos + '" target="_blank" rel="noopener">' +
+      (local.fotos ? "Mais fotos no Google Maps" : "Ver fotos no Google Maps") + "</a>" +
       '<button class="btn secundario" id="btn-compartilhar">Copiar link</button>' +
       "</div></section>";
     if (local.fontes && local.fontes.length)
@@ -784,7 +805,63 @@
       if (!navigator.clipboard) return;
       navigator.clipboard.writeText(location.href).then(() => (e.target.textContent = "Link copiado"));
     });
+    conteudo.querySelectorAll(".foto").forEach((b) =>
+      b.addEventListener("click", () => abrirFoto(local.fotos, Number(b.dataset.i)))
+    );
   }
+
+  // As licenças Creative Commons exigem crédito ao autor e indicação da licença
+  function creditoFoto(f) {
+    return 'Foto: <a href="' + esc(f.pagina) + '" target="_blank" rel="noopener">' + esc(f.autor) + "</a>, " + esc(f.licenca) + ", via Wikimedia Commons";
+  }
+
+  // ---------- Foto ampliada ----------
+  const visor = document.getElementById("visor");
+  const visorImg = visor.querySelector("img");
+  let visorFotos = [], visorI = 0, focoAntes = null;
+
+  function abrirFoto(fotos, i) {
+    visorFotos = fotos;
+    focoAntes = document.activeElement;
+    visor.hidden = false;
+    visor.classList.toggle("unica", fotos.length < 2);
+    mostrarFoto(i);
+    visor.querySelector(".visor-fechar").focus();
+  }
+
+  function mostrarFoto(i) {
+    visorI = (i + visorFotos.length) % visorFotos.length;
+    const f = visorFotos[visorI];
+    visorImg.classList.add("carregando");
+    visorImg.onload = () => visorImg.classList.remove("carregando");
+    visorImg.src = f.grande;
+    visorImg.alt = f.legenda;
+    visor.querySelector(".visor-legenda").innerHTML = esc(f.legenda) +
+      (visorFotos.length > 1 ? ' <span class="visor-contagem">' + (visorI + 1) + " de " + visorFotos.length + "</span>" : "") +
+      "<small>" + creditoFoto(f) + "</small>";
+    // Adianta a próxima foto para a troca ser instantânea
+    if (visorFotos.length > 1) new Image().src = visorFotos[(visorI + 1) % visorFotos.length].grande;
+  }
+
+  function fecharFoto() {
+    visor.hidden = true;
+    visorImg.removeAttribute("src");
+    if (focoAntes) focoAntes.focus();
+  }
+
+  visor.querySelector(".visor-fechar").addEventListener("click", fecharFoto);
+  visor.querySelector(".visor-anterior").addEventListener("click", () => mostrarFoto(visorI - 1));
+  visor.querySelector(".visor-proxima").addEventListener("click", () => mostrarFoto(visorI + 1));
+  visor.addEventListener("click", (e) => { if (e.target === visor) fecharFoto(); });
+  // Deslizar o dedo troca de foto no celular
+  let toqueX = null;
+  visor.addEventListener("touchstart", (e) => { toqueX = e.touches[0].clientX; }, { passive: true });
+  visor.addEventListener("touchend", (e) => {
+    if (toqueX === null || visorFotos.length < 2) return;
+    const dx = e.changedTouches[0].clientX - toqueX;
+    if (Math.abs(dx) > 50) mostrarFoto(visorI + (dx < 0 ? 1 : -1));
+    toqueX = null;
+  });
 
   function fecharPainel() {
     painel.hidden = true;
@@ -801,6 +878,12 @@
     if (id && (!selecionado || selecionado.id !== id) && locais.some((l) => l.id === id)) selecionar(id);
   });
   document.addEventListener("keydown", (e) => {
+    if (!visor.hidden) {
+      if (e.key === "Escape") fecharFoto();
+      else if (e.key === "ArrowRight") mostrarFoto(visorI + 1);
+      else if (e.key === "ArrowLeft") mostrarFoto(visorI - 1);
+      return;
+    }
     if (e.key !== "Escape") return;
     if (window.Realista && window.Realista.aberto()) window.Realista.fechar();
     else if (selecionado) voltarParaLista();
